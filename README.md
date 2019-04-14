@@ -36,8 +36,9 @@ Hamdy Abou El Anein
 
 ## Developpers
 
-[Hamdy Abou El Anein](#)
-[Slashbinslashnoname](https://github.com/slashbinslashnoname)
+- [Hamdy Abou El Anein](#)
+
+- [Slashbinslashnoname](https://github.com/slashbinslashnoname)
 
 ## Homepage
 
