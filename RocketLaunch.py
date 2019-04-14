@@ -1,88 +1,73 @@
 #!/usr/bin/env python3
+import os
 
-# Developer : Hamdy Abou El Anein
+import time
+import sys
 
 import json
 import urllib.request
+from prettytable import PrettyTable
+
+ORANGE="\033[93m"
+RED="\033[91m"
+GREEN="\033[92m"
+
+INDEXES = ['name', 'net']
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def filterIndex(idx):
+    if(idx in INDEXES):
+        return True
+    else:
+        return False
+
+def printOut(launches):
+    printConfirmed(launches)
+    printUnconfirmed(launches)
+    return
+
+def printConfirmed(launches):
+    print(GREEN+"--- Next confirmed rocket launches ---\n")
+    headers = filter(filterIndex, launches['launches'][0].keys())
+    t = PrettyTable(headers)
+    for i in launches["launches"]:
+        if(i["status"] == 1):
+            d2 = {k : v for k,v in filter(lambda t: t[0] in INDEXES, i.items())}
+            list_values = [ v for v in d2.values() ]
+            t.add_row(list_values)
+    print(t)
+    return
+
+def printUnconfirmed(launches):
+    print(ORANGE+"--- Next rocket launches ---\n")
+    headers = filter(filterIndex, launches['launches'][0].keys())
+    t = PrettyTable(headers)
+    for i in launches["launches"]:
+        if(i["status"] == 2 or i['status'] == 5):
+            d2 = {k : v for k,v in filter(lambda t: t[0] in INDEXES, i.items())}
+            list_values = [ v for v in d2.values() ]
+            t.add_row(list_values)
+    print(t)
+    return
+    
 
 def main():
-    urlData = ("https://launchlibrary.net/1.4/launch/next/5")
+
+    urlData = ("https://launchlibrary.net/1.4/launch/next/15")
+
+    clear()
+    print('Collecting URL . . .')
+
     webURL = urllib.request.urlopen(urlData)
     data = webURL.read()
-    encoding = webURL.info().get_content_charset('utf-8')
-    launch = json.loads(data.decode(encoding))
 
-    print("\n--- Next five rocket launches ---\n\n")
-    try:
-        print(("Name : ")+str(launch["launches"][0]["name"])+str("\n"))
-    except:
-        print(("Name : ")+str("no name"))
-        pass
-    try:
-        print(("Description : ")+str(launch["launches"][0]["missions"][0]["description"])+str("\n"))
-    except:
-        print(("Description : ")+str("no description")+str("\n"))
-    try:
-        print(("Start time : ")+str(launch["launches"][0]["windowstart"])+str("\n"))
-    except:
-        print(("Start time : ")+str("no windowstart")+str("\n"))
-    print("\n\n")
-    try:
-        print(("Name : ")+str(launch["launches"][1]["name"])+str("\n"))
-    except:
-        print(("Name : ")+str("no name"))
-        pass
-    try:
-        print(("Description : ")+str(launch["launches"][1]["missions"][0]["description"])+str("\n"))
-    except:
-        print(("Description : ")+str("no description")+str("\n"))
-    try:
-        print(("Start time : ")+str(launch["launches"][1]["windowstart"])+str("\n"))
-    except:
-        print(("Start time : ")+str("no windowstart")+str("\n"))
-    print("\n\n")
-    try:
-        print(("Name : ")+str(launch["launches"][2]["name"])+str("\n"))
-    except:
-        print(("Name : ")+str("no name"))
-        pass
-    try:
-        print(("Description : ")+str(launch["launches"][2]["missions"][0]["description"])+str("\n"))
-    except:
-        print(("Description : ")+str("no description")+str("\n"))
-    try:
-        print(("Start time : ")+str(launch["launches"][2]["windowstart"])+str("\n"))
-    except:
-        print(("Start time : ")+str("no windowstart")+str("\n"))
-    print("\n\n")
-    try:
-        print(("Name : ")+str(launch["launches"][3]["name"])+str("\n"))
-    except:
-        print(("Name : ")+str("no name"))
-        pass
-    try:
-        print(("Description : ")+str(launch["launches"][3]["missions"][0]["description"])+str("\n"))
-    except:
-        print(("Description : ")+str("no description")+str("\n"))
-    try:
-        print(("Start time : ")+str(launch["launches"][3]["windowstart"])+str("\n"))
-    except:
-        print(("Start time : ")+str("no windowstart")+str("\n"))
-    print("\n\n")
-    try:
-        print(("Name : ")+str(launch["launches"][4]["name"])+str("\n"))
-    except:
-        print(("Name : ")+str("no name"))
-        pass
-    try:
-        print(("Description : ")+str(launch["launches"][4]["missions"][0]["description"])+str("\n"))
-    except:
-        print(("Description : ")+str("no description")+str("\n"))
-    try:
-        print(("Start time : ")+str(launch["launches"][4]["windowstart"])+str("\n"))
-    except:
-        print(("Start time : ")+str("no windowstart")+str("\n"))
-    print("\n\n")
-    print("Developer - Author : Hamdy Abou El Anein\nhttps://github.com/hamdyaea")
+    clear()
+
+    encoding = webURL.info().get_content_charset('utf-8')
+    launches = json.loads(data.decode(encoding))
+
+    printOut(launches)
 
 main()

@@ -1,19 +1,25 @@
 ![Awesome](awesome.svg) ![Python](python.png)  
 
-# Next five rocket launches
+# Next Rocket launches
 
 ![Screenshot](screenshot.png)
 
 ## What's this software ?  
 
-This python 3 software download and display the next five rocket launches.
+This python 3 software download and display the next rocket launches.
 
 This software is for aerospace enthusiast who do not want to miss a live rocket launch.
+
+## Prerequisities 
+
+ - Download and install Python3 on your computer https://www.python.org/downloads/
+ - Take a little time to learn what you can do with that (such as Machine Learning, Objects detection, etc)
+ - Launch the script
 
 ## How to launch this software :  
 
 ```sh
-python3 RocketLaunch.py
+./RocketLaunch.py
 ```  
 ## Windows .exe version :
 
@@ -24,13 +30,14 @@ The data are updated at every run.
 [![Download Next Five Rocket Launches](https://img.shields.io/sourceforge/dm/next-five-rocket-launches.svg)](https://sourceforge.net/projects/next-five-rocket-launches/files/latest/download)
 [![Download Next Five Rocket Launches](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/next-five-rocket-launches/files/latest/download)
 
-## Requirements :
-
-Python 3
-
-## Developer - Author
+## Author
 
 Hamdy Abou El Anein
+
+## Developpers
+
+[Hamdy Abou El Anein](#)
+[Slashbinslashnoname](https://github.com/slashbinslashnoname)
 
 ## Homepage
 
